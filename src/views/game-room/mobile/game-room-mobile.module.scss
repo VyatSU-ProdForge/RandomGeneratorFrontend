@@ -1,0 +1,148 @@
+// Game Room Mobile View Styles
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: hsl(46deg 100% 50%); // Желтый фон как на дизайне
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  padding: $spacing-md 0;
+}
+
+.logoCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 193px;
+  height: 50px;
+  margin: 0 auto;
+  background-color: var(--color-background);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px hsl(0deg 0% 0% / 15%);
+}
+
+.logo {
+  width: 161px;
+  height: 40px;
+}
+
+.headerInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 $spacing-lg;
+}
+
+.date {
+  color: var(--color-text);
+  font-size: $font-size-sm;
+}
+
+.loginButton {
+  padding: $spacing-xs $spacing-md;
+  color: var(--color-text);
+  font-weight: $font-weight-medium;
+  font-size: $font-size-sm;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity $transition-base;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: $spacing-lg;
+  padding: $spacing-lg;
+}
+
+.title {
+  color: var(--color-text);
+  font-weight: $font-weight-bold;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.myGamesButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md;
+  color: var(--color-text);
+  font-weight: $font-weight-medium;
+  font-size: $font-size-md;
+  background-color: var(--color-background);
+  border: none;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  box-shadow: 0 2px 8px hsl(0deg 0% 0% / 8%);
+  transition: all $transition-base;
+
+  &:hover {
+    box-shadow: 0 4px 12px hsl(0deg 0% 0% / 12%);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    box-shadow: 0 1px 4px hsl(0deg 0% 0% / 6%);
+    transform: translateY(0);
+  }
+}
+
+.tabs {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.tab {
+  padding: $spacing-sm $spacing-lg;
+  color: hsl(46deg 100% 50%); // Желтый текст
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-md;
+  background-color: var(--color-text); // Черный фон для видимости желтого текста
+  border: none;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.tabActive {
+  color: var(--color-text); // Черный текст
+  background-color: var(--color-background); // Белый фон
+}
+
+.gamesList {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: $spacing-lg;
+  width: 100%;
+}
+
+.emptyState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $spacing-xxl;
+  color: var(--color-text-secondary);
+}
+

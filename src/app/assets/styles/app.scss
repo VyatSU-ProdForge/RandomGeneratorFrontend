@@ -1,0 +1,68 @@
+// Main App Styles
+// Главный файл стилей приложения
+
+@import './scss/reset';
+
+// CSS переменные для цветов (тема)
+:root {
+  // Основные цвета
+  --color-primary: #3b82f6;
+  --color-secondary: #8b5cf6;
+  --color-background: #fff;
+  --color-surface: #f9fafb;
+  --color-text: #111827;
+  --color-text-secondary: #6b7280;
+  
+  // Цвета состояний
+  --color-error: #ef4444;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+  
+  // Границы
+  --color-border: #e5e7eb;
+  --color-border-hover: #d1d5db;
+  
+  // Тени
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 5%);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
+}
+
+// Темная тема
+[data-theme='dark'] {
+  --color-primary: #60a5fa;
+  --color-secondary: #a78bfa;
+  --color-background: #111827;
+  --color-surface: #1f2937;
+  --color-text: #f9fafb;
+  --color-text-secondary: #d1d5db;
+  --color-error: #f87171;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-info: #60a5fa;
+  --color-border: #374151;
+  --color-border-hover: #4b5563;
+}
+
+// Базовые стили
+body {
+  color: var(--color-text);
+  font-weight: $font-weight-normal;
+  font-size: $font-size-md;
+  font-family: $font-family-base;
+  background-color: var(--color-background);
+}
+
+code {
+  font-family: $font-family-mono;
+}
+
+// Утилитарные классы (если нужны)
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}

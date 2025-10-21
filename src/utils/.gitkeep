@@ -1,0 +1,5 @@
+# Utils
+# Чистые функции, не зависящие от бизнес-логики
+# Категории: date-time, string, files, colors, validation, url, theme, metric, geo, device, image, websocket
+# Все утилиты должны быть покрыты JSDoc комментариями
+

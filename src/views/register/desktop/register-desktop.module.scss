@@ -1,0 +1,114 @@
+// Register Desktop View Styles
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-xl $spacing-lg;
+  background-color: var(--color-background);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 480px;
+  gap: $spacing-xl;
+}
+
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  width: 200px;
+  height: 50px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  text-align: center;
+}
+
+.title {
+  color: var(--color-text);
+  font-weight: $font-weight-bold;
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  color: var(--color-text);
+  font-weight: $font-weight-normal;
+  font-size: $font-size-lg;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md 0;
+
+  &::before,
+  &::after {
+    flex: 1;
+    height: 1px;
+    content: '';
+    background-color: hsl(0deg 0% 90%);
+  }
+}
+
+.dividerText {
+  color: hsl(0deg 0% 70%);
+  font-size: $font-size-md;
+  white-space: nowrap;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding-top: $spacing-md;
+}
+
+.link {
+  position: relative;
+  color: var(--color-text);
+  font-size: $font-size-lg;
+  text-decoration: none;
+  transition: color $transition-base;
+
+  &::after {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    content: '';
+    background-color: var(--color-primary);
+    transition: width $transition-base;
+  }
+
+  &:hover {
+    color: var(--color-primary);
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
