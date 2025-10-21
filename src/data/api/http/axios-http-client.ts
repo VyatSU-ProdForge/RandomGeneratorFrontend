@@ -8,12 +8,12 @@ import type {
 
 import { ApiError } from '@/data/errors';
 import type { BaseResponse } from '@/data/api/interfaces';
-import type { HttpClient, RequestConfig } from "@/core/interfaces/httpClient";
-import { API_CONFIG } from '@/core/configs/api';
+import type { IHttpClient, RequestConfig } from "@/core/interfaces/http-client/index";
+import { API_CONFIG } from '@/core/config/constants';
 
 export type TokenProvider = () => string | null;
 
-export class AxiosHttpClient implements HttpClient {
+export class AxiosHttpClient implements IHttpClient {
 	private client: AxiosInstance;
   
 	constructor(baseURL: string, private getToken?: TokenProvider) {

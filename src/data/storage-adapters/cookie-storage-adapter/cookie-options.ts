@@ -1,4 +1,4 @@
-export interface CookieOptions {
+export type CookieOptions = {
 	maxAge?: number;        // В секундах
 	expires?: Date;         // Дата экспирации
 	path?: string;          // Путь (по умолчанию '/')
