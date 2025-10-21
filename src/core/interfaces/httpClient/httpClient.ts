@@ -1,4 +1,4 @@
-import type { RequestConfig } from "@/core/interfaces/httpClient.types";
+import type { RequestConfig } from "@/core/interfaces/httpClient/httpClient.types";
 
 export interface HttpClient {
 	get<T>(url: string, config?: RequestConfig): Promise<T>;
