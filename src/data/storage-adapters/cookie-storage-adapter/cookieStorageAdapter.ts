@@ -1,7 +1,7 @@
-import type { Storage } from '@/core/interfaces/storage';
-import type { CookieOptions } from '@/data/storage-adapters/cookieStorageAdapter/cookieOptions';
+import type { IStorage } from '@core/interfaces/storage';
+import type { CookieOptions } from '@/data/storage-adapters/cookie-storage-adapter/cookieOptions';
 
-export class CookieStorage implements Storage {
+export class CookieStorage implements IStorage {
 	get<T = string>(key: string): T | null {
 		const cookies = document.cookie.split(';');
 

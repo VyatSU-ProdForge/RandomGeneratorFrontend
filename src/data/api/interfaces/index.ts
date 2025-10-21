@@ -1,1 +1,1 @@
-export type { BaseResponse } from "@/data/api/interfaces/baseResponse"
+export type { BaseResponse } from "@/data/api/interfaces/base-response"
