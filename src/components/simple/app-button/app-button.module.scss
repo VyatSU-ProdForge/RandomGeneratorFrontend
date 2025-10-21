@@ -1,0 +1,91 @@
+// App Button Component Styles
+
+.button {
+  display: flex;
+  gap: $spacing-sm;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-md $spacing-lg;
+  color: var(--color-text);
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-md;
+  font-family: $font-family-base;
+  background-color: transparent;
+  border: none;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  outline: none;
+  transition: all $transition-base;
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.primary {
+  color: hsl(0deg 0% 0%);
+  background-color: hsl(46deg 100% 50%);
+  box-shadow: 0 2px 8px hsl(46deg 100% 50% / 30%);
+
+  &:hover:not(:disabled) {
+    background-color: hsl(46deg 100% 55%);
+    box-shadow: 0 4px 12px hsl(46deg 100% 50% / 40%);
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    background-color: hsl(46deg 100% 45%);
+    box-shadow: 0 1px 4px hsl(46deg 100% 50% / 20%);
+    transform: translateY(0);
+  }
+}
+
+.secondary {
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px hsl(0deg 0% 0% / 8%);
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-border);
+    box-shadow: 0 2px 6px hsl(0deg 0% 0% / 12%);
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    box-shadow: 0 1px 2px hsl(0deg 0% 0% / 5%);
+    transform: translateY(0);
+  }
+}
+
+.google {
+  color: var(--color-text);
+  background-color: hsl(0deg 0% 97%);
+  border: 1px solid hsl(0deg 0% 90%);
+  box-shadow: 0 1px 3px hsl(0deg 0% 0% / 8%);
+
+  &:hover:not(:disabled) {
+    background-color: hsl(0deg 0% 94%);
+    box-shadow: 0 2px 6px hsl(0deg 0% 0% / 12%);
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    background-color: hsl(0deg 0% 91%);
+    box-shadow: 0 1px 2px hsl(0deg 0% 0% / 5%);
+    transform: translateY(0);
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

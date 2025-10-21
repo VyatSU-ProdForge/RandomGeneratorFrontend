@@ -1,0 +1,23 @@
+// SCSS Functions
+// Функции для работы с цветами, размерами и т.д.
+
+// Функция для получения цвета из CSS переменной
+@function get-color($color-name) {
+  @return var(--color-#{$color-name});
+}
+
+// Функция для расчета rem из px
+@function rem($px) {
+  @return calc($px / 16) * 1rem;
+}
+
+// Функция для расчета em из px
+@function em($px, $base: 16) {
+  @return calc($px / $base) * 1em;
+}
+
+// Функция для генерации rgba из CSS переменной
+@function color-alpha($color-var, $alpha) {
+  @return rgba($color-var, $alpha);
+}
+

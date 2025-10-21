@@ -1,0 +1,112 @@
+// Login Mobile View Styles
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  padding: $spacing-md $spacing-lg;
+  background-color: var(--color-background);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  gap: $spacing-lg;
+}
+
+.logoWrapper {
+  display: flex;
+  padding-top: $spacing-md;
+}
+
+.logo {
+  width: 161px;
+  height: 40px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.title {
+  color: var(--color-text);
+  font-weight: $font-weight-bold;
+  font-size: $font-size-xxl;
+  line-height: 1.2;
+}
+
+.subtitle {
+  color: var(--color-text);
+  font-weight: $font-weight-normal;
+  font-size: $font-size-md;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-sm 0;
+
+  &::before,
+  &::after {
+    flex: 1;
+    height: 1px;
+    content: '';
+    background-color: hsl(0deg 0% 90%);
+  }
+}
+
+.dividerText {
+  color: hsl(0deg 0% 70%);
+  font-size: $font-size-sm;
+  white-space: nowrap;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding-top: $spacing-sm;
+}
+
+.link {
+  position: relative;
+  color: var(--color-text);
+  font-size: $font-size-md;
+  text-decoration: none;
+  transition: color $transition-base;
+
+  &::after {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    content: '';
+    background-color: var(--color-primary);
+    transition: width $transition-base;
+  }
+
+  &:hover {
+    color: var(--color-primary);
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+

@@ -1,0 +1,58 @@
+// SCSS Variables
+// Цвета, размеры, шрифты и другие переменные проекта
+
+// Цвета (использовать через CSS переменные или функции)
+$color-primary: var(--color-primary);
+$color-secondary: var(--color-secondary);
+$color-background: var(--color-background);
+$color-text: var(--color-text);
+$color-error: var(--color-error);
+$color-success: var(--color-success);
+$color-warning: var(--color-warning);
+
+// Размеры
+$spacing-xs: 0.25rem;  // 4px
+$spacing-sm: 0.5rem;   // 8px
+$spacing-md: 1rem;     // 16px
+$spacing-lg: 1.5rem;   // 24px
+$spacing-xl: 2rem;     // 32px
+$spacing-xxl: 3rem;    // 48px
+
+// Шрифты
+$font-family-base: -apple-system, blinkmacsystemfont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$font-family-mono: source-code-pro, menlo, monaco, consolas, 'Courier New', monospace;
+$font-size-xs: 0.75rem;   // 12px
+$font-size-sm: 0.875rem;  // 14px
+$font-size-md: 1rem;      // 16px
+$font-size-lg: 1.25rem;   // 20px
+$font-size-xl: 1.5rem;    // 24px
+$font-size-xxl: 2rem;     // 32px
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Breakpoints
+$breakpoint-mobile: 320px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1280px;
+$breakpoint-wide: 1920px;
+
+// Border radius
+$border-radius-sm: 0.25rem;  // 4px
+$border-radius-md: 0.5rem;   // 8px
+$border-radius-lg: 1rem;     // 16px
+
+// Transitions
+$transition-fast: 0.15s ease-in-out;
+$transition-base: 0.3s ease-in-out;
+$transition-slow: 0.5s ease-in-out;
+
+// Z-index (альтернатива запрещенному z-index в стилях)
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;

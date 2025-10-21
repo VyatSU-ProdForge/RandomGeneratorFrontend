@@ -7,9 +7,14 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:styles": "stylelint \"src/**/*.{css,scss}\"",
+    "lint:styles:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
     "preview": "vite preview"
   },
   "dependencies": {
+    "mobx": "^6.15.0",
+    "mobx-react-lite": "^4.1.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
@@ -24,6 +29,11 @@
     "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
     "react-router-dom": "^7.9.4",
+    "sass": "^1.93.2",
+    "stylelint": "^16.25.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard-scss": "^16.0.0",
+    "stylelint-order": "^7.0.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0",
     "vite": "npm:rolldown-vite@7.1.14"
