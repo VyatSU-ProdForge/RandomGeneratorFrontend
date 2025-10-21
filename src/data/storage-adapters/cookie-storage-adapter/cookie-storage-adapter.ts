@@ -1,13 +1,7 @@
 import type { IStorage } from '@core/interfaces/storage';
-<<<<<<<< HEAD:src/data/storage-adapters/cookie-storage-adapter/cookie-storage-adapter.ts
 import type { CookieOptions } from '@/data/storage-adapters/cookie-storage-adapter/cookie-options';
 
 export class CookieStorageAdapter implements IStorage {
-========
-import type { CookieOptions } from '@/data/storage-adapters/cookie-storage-adapter/cookieOptions';
-
-export class CookieStorage implements IStorage {
->>>>>>>> 4a9a6e0e3ef1628902fa33c1805275165e7b421a:src/data/storage-adapters/cookie-storage-adapter/cookieStorageAdapter.ts
 	get<T = string>(key: string): T | null {
 		const cookies = document.cookie.split(';');
 

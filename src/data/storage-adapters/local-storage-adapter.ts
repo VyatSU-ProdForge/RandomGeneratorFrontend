@@ -1,6 +1,6 @@
 import type { IStorage} from '@/core/interfaces/storage';
 
-export class LocalStorage implements IStorage {
+export class LocalStorageAdapter implements IStorage {
 	get<T = string>(key: string): T | null {
 		const item = localStorage.getItem(key);
 		
