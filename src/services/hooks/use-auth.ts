@@ -102,7 +102,7 @@ export function useAuth(authService: AuthService): AuthState & AuthActions {
         setState(prev => ({ ...prev, isLoading: true }));
         
         try {
-            await authService.logout();
+            //await authService.logout();
             
             setState({
                 isAuthenticated: false,
