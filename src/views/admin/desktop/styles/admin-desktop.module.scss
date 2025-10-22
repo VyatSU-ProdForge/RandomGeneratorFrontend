@@ -1,0 +1,33 @@
+@import "@/app/assets/styles/bundle.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 40px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  color: hsl(0deg 0% 0%);
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 18px;
+  color: hsl(0deg 0% 40%);
+  text-align: center;
+}
+

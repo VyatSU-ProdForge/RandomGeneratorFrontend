@@ -19,7 +19,7 @@ export class AuthService {
 
 	async login(loginRequest: LoginRequest): Promise<AuthSession> {
 		const response = await this.authRepository.login(loginRequest);
-		
+		console.log(response);
 		// Store session data
 		this.authStorage.setSession(response);
 		

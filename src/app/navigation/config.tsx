@@ -6,6 +6,7 @@ import { GameRoom } from '@views/game-room';
 import { MyGames } from '@views/my-games';
 import { GameStepFirst } from '@views/game-step/game-step-first';
 import { GameStepSecond } from '@views/game-step/game-step-second';
+import { Admin } from '@views/admin';
 import { MainLayout } from '@app/layout/main-layout';
 
 export const routes: RouteObject[] = [
@@ -19,6 +20,10 @@ export const routes: RouteObject[] = [
       {
         path: RoutePath.GameRoom,
         element: <GameRoom />,
+      },
+      {
+        path: RoutePath.Admin,
+        element: <Admin />,
       },
     ],
   },

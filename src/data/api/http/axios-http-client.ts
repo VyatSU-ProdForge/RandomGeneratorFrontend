@@ -22,10 +22,10 @@ export class AxiosHttpClient implements IHttpClient {
 			timeout: API_CONFIG.TIMEOUTS.DEFAULT,
 		});
 
-		this.client.interceptors.request.use(this._requestInterceptor);
+		this.client.interceptors.request.use(this._requestInterceptor.bind(this));
 		this.client.interceptors.response.use(
 			(response) => response,
-			this._errorResponseInterceptor
+			this._errorResponseInterceptor.bind(this)
 		);
 	}
   
@@ -36,9 +36,11 @@ export class AxiosHttpClient implements IHttpClient {
 	}
   
 	async post<T>(url: string, data?: unknown, config?: RequestConfig): Promise<T> {
-		const response = await this.client.post<T>(url, data, this._transformConfig(config));
-    	
-		return response.data;
+		const response = await this.client.post<any>(url, data, this._transformConfig(config));
+		
+		// Сервер оборачивает данные в { data: ..., statusCode: ... }
+		// Извлекаем внутренний data
+		return response.data.data as T;
 	}
 
 	async patch<T>(url: string, data?: unknown, config?: RequestConfig): Promise<T> {
@@ -80,16 +82,21 @@ export class AxiosHttpClient implements IHttpClient {
 	}
 
 	private _errorResponseInterceptor(error: AxiosError<BaseResponse>) {
+		console.error('🔴 HTTP Error:', error);
+		
 		if (error?.config?.url?.includes('logout')) {
 			return;
 		}
 
 		if (!error.response) {
+			console.error('🔴 No response from server');
 			throw new ApiError("Сервер недоступен");
 		}
 		
 		const status = error.response.status;
 		const details = error.response.data;
+		
+		console.error('🔴 Server error:', status, details);
 
 		throw new ApiError(`Ошибка API: ${status}`, status, details);
 	}

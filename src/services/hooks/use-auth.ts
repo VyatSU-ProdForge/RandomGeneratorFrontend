@@ -15,6 +15,7 @@ interface AuthState {
 interface AuthActions {
     login: (loginRequest: LoginRequest) => Promise<void>;
     register: (registrationRequest: RegistrationRequest) => Promise<void>;
+    logout: () => Promise<void>;
     clearError: () => void;
 }
 
@@ -93,6 +94,30 @@ export function useAuth(authService: AuthService): AuthState & AuthActions {
                 isLoading: false,
                 error: error instanceof Error ? error.message : 'Registration failed'
             }));
+            throw error;
+        }
+    }, [authService]);
+
+    const logout = useCallback(async () => {
+        setState(prev => ({ ...prev, isLoading: true }));
+        
+        try {
+            await authService.logout();
+            
+            setState({
+                isAuthenticated: false,
+                user: null,
+                token: null,
+                session: null,
+                isLoading: false,
+                error: null
+            });
+        } catch (error) {
+            setState(prev => ({
+                ...prev,
+                isLoading: false,
+                error: error instanceof Error ? error.message : 'Logout failed'
+            }));
         }
     }, [authService]);
 
@@ -104,6 +129,7 @@ export function useAuth(authService: AuthService): AuthState & AuthActions {
         ...state,
         login,
         register,
+        logout,
         clearError
     };
 }

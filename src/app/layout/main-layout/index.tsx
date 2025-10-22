@@ -1,5 +1,6 @@
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { useAuthContext } from '@providers/use-auth-context';
 import { Header } from '../header';
 import { RoutePath } from '@app/navigation/routes';
 import styles from './styles/main-layout.module.scss';
@@ -16,9 +17,11 @@ export function MainLayout({
   transparent = false,
 }: IMainLayoutProps): React.ReactElement {
   const navigate = useNavigate();
+  const { logout } = useAuthContext();
 
-  const handleAuthClick = (): void => {
-    // Переход на страницу логина
+  const handleAuthClick = async (): Promise<void> => {
+    // Выход из системы
+    await logout();
     void navigate(RoutePath.Login);
   };
 

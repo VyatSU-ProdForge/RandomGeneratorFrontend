@@ -52,6 +52,15 @@
   gap: $spacing-md;
 }
 
+.error {
+  padding: $spacing-sm $spacing-md;
+  background-color: hsl(0deg 100% 95%);
+  border-radius: 8px;
+  color: hsl(0deg 70% 50%);
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+}
+
 .divider {
   display: flex;
   align-items: center;

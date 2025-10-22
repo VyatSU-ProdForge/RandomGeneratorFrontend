@@ -9,7 +9,7 @@ import type {
 } from "./interfaces";
 
 export class ApiAuthRepository implements AuthRepository {
-	private _route: string = '/api/auth/v1/';
+	private _route: string = '/api/auth/v1';
 
 	constructor(private httpClient: IHttpClient) {}
 
@@ -27,13 +27,14 @@ export class ApiAuthRepository implements AuthRepository {
 
 	async login(loginRequest: LoginRequest): Promise<AuthResponse> {
 		const endpoint = "/login";
-
+		console.log(`${API_CONFIG.BASE_URL}${this._route}${endpoint}`)
 		const response = await this.httpClient.post<AuthResponse>(
 			`${this._route}${endpoint}`,
 			loginRequest,
 			{ timeout: API_CONFIG.TIMEOUTS.DEFAULT }
 		);
-
+		
+		console.log(`${response}`)
 		return response;
 	}
 }
