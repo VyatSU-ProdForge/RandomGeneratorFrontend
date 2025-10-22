@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { RoutePath } from '@app/navigation/routes';
 import { GameCard } from '@components/composite/game-card';
 import gameCardBg from '@app/assets/images/game-card-bg.png';
 import gameIcon from '@app/assets/images/game-icon.png';
 import styles from './styles/game-room-desktop.module.scss';
 
 export function GameRoomDesktop(): React.ReactElement {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = React.useState<'new' | 'history'>('new');
 
   // Моковые данные - потом придут с бэка
@@ -45,7 +48,7 @@ export function GameRoomDesktop(): React.ReactElement {
         <h1 className={styles.title}>Игровая комната</h1>
 
         {/* Кнопка "Мои игры" */}
-        <button className={styles.myGamesButton}>
+        <button className={styles.myGamesButton} onClick={(): void => { void navigate(RoutePath.MyGames); }}>
           <span>Мои игры</span>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

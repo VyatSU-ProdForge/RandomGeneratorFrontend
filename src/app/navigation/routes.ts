@@ -4,6 +4,7 @@
 export const RoutePath = {
   Home: '/',
   GameRoom: '/game-room',
+  MyGames: '/my-games',
   Register: '/register',
   Login: '/login',
   GameStepFirst: '/game-step/first/:id',
