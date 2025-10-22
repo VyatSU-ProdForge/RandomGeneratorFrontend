@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { HeaderMobile } from './mobile';
 import { HeaderDesktop } from './desktop';
 
