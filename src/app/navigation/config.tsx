@@ -29,7 +29,7 @@ export const routes: RouteObject[] = [
     ],
   },
   {
-    element: <MainLayout showDate={false} showAuthButton={false} />,
+    element: <MainLayout showDate={false} showMenuButton={false} />,
     children: [
       {
         path: RoutePath.MyGames,

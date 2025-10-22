@@ -233,7 +233,7 @@ export function GameStepFirstMobile(): React.ReactElement {
       </div>
 
       <div className={styles.headerWrapper}>
-        <Header showDate={false} showAuthButton={false} transparent={true} />
+        <Header showDate={false} showMenuButton={false} transparent={true} />
       </div>
 
       <div className={styles.content}>

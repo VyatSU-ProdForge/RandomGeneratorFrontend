@@ -1,67 +1,277 @@
+@import "@/app/assets/styles/bundle.scss";
+
+// Lottery Algorithm Desktop View Styles
+
 .container {
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: hsl(46deg 100% 50%);
+  position: relative;
+  overflow-x: hidden;
 }
 
-.header {
-	text-align: center;
-	margin-bottom: 32px;
+.backgroundWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.logo {
-	height: 48px;
-	margin-bottom: 16px;
+.backgroundImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.backgroundGradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to bottom, transparent, hsl(46deg 100% 50%));
+}
+
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 48px 48px;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: hsl(0deg 0% 100%);
+  border: 1px solid hsl(0deg 0% 90%);
+  border-radius: 12px;
+  padding: 10px 20px;
+  color: hsl(0deg 0% 0%);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  width: fit-content;
+  align-self: flex-start;
+  box-shadow: 0 2px 8px hsl(0deg 0% 0% / 8%);
+
+  &:hover {
+    background-color: hsl(0deg 0% 95%);
+    box-shadow: 0 4px 12px hsl(0deg 0% 0% / 12%);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 4px hsl(0deg 0% 0% / 8%);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  background-color: hsl(0deg 0% 100%);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px hsl(0deg 0% 0% / 12%);
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .title {
-	font-size: 28px;
-	margin: 0 0 8px;
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: hsl(0deg 0% 0%);
 }
 
 .subtitle {
-	color: #666;
-	margin: 0;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: hsl(0deg 0% 40%);
 }
 
-.steps {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 16px;
-	max-width: 1200px;
-	width: 100%;
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .stepCard {
-	background: #ffffff;
-	border-radius: 12px;
-	padding: 24px;
-	box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: hsl(0deg 0% 98%);
+  border: 1px solid hsl(0deg 0% 90%);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+
+  &:hover {
+    background-color: hsl(0deg 0% 95%);
+    border-color: hsl(46deg 100% 50%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px hsl(0deg 0% 0% / 8%);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 .stepNumber {
-	width: 36px;
-	height: 36px;
-	border-radius: 50%;
-	background: #1a73e8;
-	color: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-weight: 700;
-	margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: hsl(46deg 100% 50%);
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 700;
+  color: hsl(0deg 0% 0%);
+  flex-shrink: 0;
+}
+
+.stepContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .stepTitle {
-	margin: 0 0 8px;
-	font-size: 18px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: hsl(0deg 0% 0%);
 }
 
-.stepText {
-	margin: 0;
-	line-height: 1.5;
+.stepDescription {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: hsl(0deg 0% 50%);
 }
 
+.stepArrow {
+  font-size: 20px;
+  color: hsl(0deg 0% 60%);
+  transition: all 0.2s ease;
+}
 
+.stepCard:hover .stepArrow {
+  color: hsl(46deg 100% 50%);
+  transform: translateX(4px);
+}
+
+// Modal styles
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: hsl(0deg 0% 0% / 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal {
+  background-color: hsl(0deg 0% 100%);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px hsl(0deg 0% 0% / 20%);
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modalClose {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: hsl(0deg 0% 95%);
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 600;
+  color: hsl(0deg 0% 40%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 1;
+
+  &:hover {
+    background-color: hsl(0deg 0% 90%);
+    color: hsl(0deg 0% 20%);
+  }
+}
+
+.modalContent {
+  padding: 40px;
+
+  h3 {
+    margin: 0 0 16px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: hsl(0deg 0% 0%);
+  }
+
+  p {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: hsl(0deg 0% 30%);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul {
+    margin: 0 0 16px 0;
+    padding-left: 20px;
+
+    li {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+      line-height: 1.5;
+      color: hsl(0deg 0% 30%);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { HeaderMobile } from './mobile';
 import { HeaderDesktop } from './desktop';
 
 interface IHeaderProps {
   showDate?: boolean;
-  showAuthButton?: boolean;
-  onAuthClick?: () => void;
+  showMenuButton?: boolean;
   transparent?: boolean;
 }
 

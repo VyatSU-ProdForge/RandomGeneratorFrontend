@@ -15,7 +15,7 @@ interface AuthState {
 interface AuthActions {
     login: (loginRequest: LoginRequest) => Promise<void>;
     register: (registrationRequest: RegistrationRequest) => Promise<void>;
-    logout: () => Promise<void>;
+    logout: () => void;
     clearError: () => void;
 }
 
@@ -98,12 +98,10 @@ export function useAuth(authService: AuthService): AuthState & AuthActions {
         }
     }, [authService]);
 
-    const logout = useCallback(async () => {
+    const logout = useCallback(() => {
         setState(prev => ({ ...prev, isLoading: true }));
         
         try {
-            //await authService.logout();
-            
             setState({
                 isAuthenticated: false,
                 user: null,

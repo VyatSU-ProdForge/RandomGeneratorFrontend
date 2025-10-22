@@ -1,0 +1,47 @@
+.menuContent {
+    width: 100%;
+  }
+  
+  .menuItems {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .menuItem {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background-color 0.2s ease;
+    font-size: 14px;
+    border-radius: 6px;
+    
+    &:hover:not(.disabled) {
+      background: #f5f5f5;
+    }
+    
+    &:active:not(.disabled) {
+      background: #ebebeb;
+    }
+    
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  
+  .itemIcon {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+  }
+  
+  .itemTitle {
+    flex: 1;
+  }
