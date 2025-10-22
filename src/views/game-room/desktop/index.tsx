@@ -1,9 +1,8 @@
 import React from 'react';
 import { GameCard } from '@components/composite/game-card';
-import logo from '@app/assets/images/logo.svg';
-import gameCardBg from '@app/assets/images/game-card-bg.jpg';
+import gameCardBg from '@app/assets/images/game-card-bg.png';
 import gameIcon from '@app/assets/images/game-icon.png';
-import styles from './game-room-desktop.module.scss';
+import styles from './styles/game-room-desktop.module.scss';
 
 export function GameRoomDesktop(): React.ReactElement {
   const [activeTab, setActiveTab] = React.useState<'new' | 'history'>('new');
@@ -40,17 +39,6 @@ export function GameRoomDesktop(): React.ReactElement {
 
   return (
     <div className={styles.container}>
-      {/* Хедер с логотипом */}
-      <header className={styles.header}>
-        <div className={styles.logoCard}>
-          <img src={logo} alt="СТОЛОТО" className={styles.logo} />
-        </div>
-        <div className={styles.headerInfo}>
-          <span className={styles.date}>Вторник, 21 октября</span>
-          <button className={styles.loginButton}>Выход</button>
-        </div>
-      </header>
-
       {/* Контент */}
       <div className={styles.content}>
         {/* Заголовок */}

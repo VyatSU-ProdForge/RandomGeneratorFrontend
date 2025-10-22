@@ -1,6 +1,7 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppButton } from '@components/simple/app-button';
-import styles from './game-card.module.scss';
+import styles from './styles/game-card.module.scss';
 
 interface IGameCardProps {
   id: string;
@@ -16,6 +17,7 @@ interface IGameCardProps {
 }
 
 export function GameCard({
+  id,
   name,
   drawNumber,
   jackpot,
@@ -26,6 +28,11 @@ export function GameCard({
   iconUrl,
   isHistory = false,
 }: IGameCardProps): React.ReactElement {
+  const navigate = useNavigate();
+
+  const handlePlayClick = (): void => {
+    void navigate(`/game-step/first/${id}`);
+  };
   return (
     <div className={styles.card}>
       {/* Картинка сверху */}
@@ -64,7 +71,7 @@ export function GameCard({
             Недоступно
           </div>
         ) : (
-          <AppButton variant="primary" fullWidth>
+          <AppButton variant="primary" fullWidth onClick={handlePlayClick}>
             {price}
           </AppButton>
         )}

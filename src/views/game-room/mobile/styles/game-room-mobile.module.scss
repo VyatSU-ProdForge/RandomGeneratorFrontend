@@ -1,56 +1,53 @@
-// Game Room Desktop View Styles
+// Game Room Mobile View Styles
 
 .container {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background-color: hsl(46deg 100% 50%);
+  background-color: hsl(46deg 100% 50%); // Желтый фон как на дизайне
 }
 
 .header {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: $spacing-lg $spacing-xxl;
-  position: relative;
+  flex-direction: column;
+  gap: $spacing-sm;
+  padding: $spacing-md 0;
 }
 
 .logoCard {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 250px;
-  height: 70px;
+  width: 193px;
+  height: 50px;
+  margin: 0 auto;
   background-color: var(--color-background);
   border-radius: 16px;
-  box-shadow: 0 4px 16px hsl(0deg 0% 0% / 15%);
+  box-shadow: 0 4px 12px hsl(0deg 0% 0% / 15%);
 }
 
 .logo {
-  width: 200px;
-  height: 50px;
+  width: 161px;
+  height: 40px;
 }
 
 .headerInfo {
   display: flex;
-  gap: $spacing-xl;
+  justify-content: space-between;
   align-items: center;
-  position: absolute;
-  top: 50%;
-  right: $spacing-xxl;
-  transform: translateY(-50%);
+  padding: 0 $spacing-lg;
 }
 
 .date {
   color: var(--color-text);
-  font-size: $font-size-md;
+  font-size: $font-size-sm;
 }
 
 .loginButton {
-  padding: $spacing-sm $spacing-lg;
+  padding: $spacing-xs $spacing-md;
   color: var(--color-text);
-  font-weight: $font-weight-semibold;
-  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-sm;
   background: none;
   border: none;
   cursor: pointer;
@@ -69,16 +66,14 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: $spacing-xl;
-  max-width: 1200px;
-  padding: $spacing-xxl;
-  margin: 0 auto;
+  gap: $spacing-lg;
+  padding: $spacing-lg;
 }
 
 .title {
   color: var(--color-text);
   font-weight: $font-weight-bold;
-  font-size: 3rem;
+  font-size: 2rem;
   line-height: 1.2;
 }
 
@@ -86,11 +81,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 400px;
-  padding: $spacing-lg;
+  padding: $spacing-md;
   color: var(--color-text);
-  font-weight: $font-weight-semibold;
-  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-md;
   background-color: var(--color-background);
   border: none;
   border-radius: $border-radius-md;
@@ -111,15 +105,15 @@
 
 .tabs {
   display: flex;
-  gap: $spacing-md;
+  gap: $spacing-sm;
 }
 
 .tab {
-  padding: $spacing-md $spacing-xl;
-  color: hsl(46deg 100% 50%); // Желтый текст
+  padding: $spacing-sm $spacing-lg;
+  color: var(--color-text); // Черный текст
   font-weight: $font-weight-semibold;
-  font-size: $font-size-lg;
-  background-color: var(--color-text); // Черный фон для видимости желтого текста
+  font-size: $font-size-md;
+  background-color: var(--color-background); // Белый фон
   border: none;
   border-radius: $border-radius-md;
   cursor: pointer;
@@ -132,27 +126,16 @@
 }
 
 .tabActive {
-  color: var(--color-text); // Черный текст
-  background-color: var(--color-background); // Белый фон
+  color: hsl(46deg 100% 50%); // Желтый текст
+  background-color: var(--color-text); // Черный фон
 }
 
 .gamesList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: $spacing-xl;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: $spacing-lg;
   width: 100%;
-
-  @media (min-width: 1400px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (min-width: 1000px) and (max-width: 1399px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 999px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .emptyState {
@@ -161,6 +144,5 @@
   align-items: center;
   padding: $spacing-xxl;
   color: var(--color-text-secondary);
-  font-size: $font-size-lg;
 }
 

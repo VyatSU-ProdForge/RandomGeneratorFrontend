@@ -3,6 +3,9 @@ import { RoutePath } from './routes';
 import { Register } from '@views/register';
 import { Login } from '@views/login';
 import { GameRoom } from '@views/game-room';
+import { GameStepFirst } from '@views/game-step/game-step-first';
+import { GameStepSecond } from '@views/game-step/game-step-second';
+import { MainLayout } from '@app/layout/main-layout';
 
 export const routes: RouteObject[] = [
   {
@@ -10,8 +13,21 @@ export const routes: RouteObject[] = [
     element: <Login />,
   },
   {
-    path: RoutePath.GameRoom,
-    element: <GameRoom />,
+    element: <MainLayout />,
+    children: [
+      {
+        path: RoutePath.GameRoom,
+        element: <GameRoom />,
+      },
+    ],
+  },
+  {
+    path: RoutePath.GameStepFirst,
+    element: <GameStepFirst />,
+  },
+  {
+    path: RoutePath.GameStepSecond,
+    element: <GameStepSecond />,
   },
   {
     path: RoutePath.Register,

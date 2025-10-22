@@ -4,7 +4,7 @@ import { AppInput } from '@components/simple/app-input';
 import { AppButton } from '@components/simple/app-button';
 import { RoutePath } from '@app/navigation/routes';
 import logo from '@app/assets/images/logo.svg';
-import styles from './register-mobile.module.scss';
+import styles from './styles/register-mobile.module.scss';
 
 export function RegisterMobile(): React.ReactElement {
   const navigate = useNavigate();

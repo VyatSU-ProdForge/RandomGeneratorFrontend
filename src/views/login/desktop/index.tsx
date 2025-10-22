@@ -4,7 +4,7 @@ import { AppInput } from '@components/simple/app-input';
 import { AppButton } from '@components/simple/app-button';
 import { RoutePath } from '@app/navigation/routes';
 import logo from '@app/assets/images/logo.svg';
-import styles from './login-desktop.module.scss';
+import styles from './styles/login-desktop.module.scss';
 
 export function LoginDesktop(): React.ReactElement {
   const navigate = useNavigate();

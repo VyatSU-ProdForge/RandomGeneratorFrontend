@@ -4,7 +4,7 @@ import { AppInput } from '@components/simple/app-input';
 import { AppButton } from '@components/simple/app-button';
 import { RoutePath } from '@app/navigation/routes';
 import logo from '@app/assets/images/logo.svg';
-import styles from './login-mobile.module.scss';
+import styles from './styles/login-mobile.module.scss';
 
 export function LoginMobile(): React.ReactElement {
   const navigate = useNavigate();
