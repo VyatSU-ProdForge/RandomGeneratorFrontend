@@ -69,7 +69,7 @@ export class AxiosHttpClient implements IHttpClient {
 		}
 
 		if (token) {
-			config.headers.set?.("Authorization", `Bearer ${token}`);
+			config.headers.set?.("Authorization", `JWT ${token}`);
 		}
 		
 		if (!config.headers.has('Content-Type')) {
