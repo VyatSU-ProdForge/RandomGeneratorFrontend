@@ -3,9 +3,6 @@ import { HeaderMobile } from './mobile';
 import { HeaderDesktop } from './desktop';
 
 interface IHeaderProps {
-  showDate?: boolean;
-  showAuthButton?: boolean;
-  onAuthClick?: () => void;
   transparent?: boolean;
 }
 

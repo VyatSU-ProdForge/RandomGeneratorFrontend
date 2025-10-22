@@ -1,0 +1,174 @@
+@import "@/app/assets/styles/bundle.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 40px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: hsl(46deg 100% 50%);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.backButton {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: hsl(0deg 0% 40%);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: hsl(0deg 0% 0%);
+  }
+}
+
+.title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: hsl(0deg 0% 0%);
+  line-height: 1.2;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1;
+  background-color: hsl(0deg 0% 100%);
+  border-radius: 20px;
+  padding: 32px;
+  position: relative;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 600;
+  color: hsl(0deg 0% 0%);
+}
+
+.textarea {
+  width: 100%;
+  padding: 18px;
+  font-size: 16px;
+  font-family: inherit;
+  border: none;
+  border-radius: 12px;
+  background-color: hsl(0deg 0% 95%);
+  resize: vertical;
+  min-height: 100px;
+  
+  &::placeholder {
+    color: hsl(0deg 0% 60%);
+  }
+  
+  &:focus {
+    outline: 2px solid hsl(46deg 100% 50%);
+    outline-offset: 0;
+  }
+}
+
+.imageUpload {
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 16 / 9;
+  background-color: hsl(0deg 0% 95%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: hsl(0deg 0% 92%);
+  }
+}
+
+.imagePlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(0deg 0% 60%);
+}
+
+.imagePreviewWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.imagePreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.removeImageButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  background-color: hsl(0deg 0% 100%);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: hsl(0deg 0% 40%);
+  box-shadow: 0 2px 12px hsla(0deg 0% 0% / 0.15);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: hsl(0deg 100% 50%);
+    color: hsl(0deg 0% 0%);
+  }
+}
+
+.dateFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.dateField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dateLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsl(0deg 0% 40%);
+}
+
+.error {
+  padding: 16px 20px;
+  background-color: hsl(0deg 100% 95%);
+  color: hsl(0deg 100% 40%);
+  border-radius: 12px;
+  font-size: 16px;
+  text-align: center;
+}
+

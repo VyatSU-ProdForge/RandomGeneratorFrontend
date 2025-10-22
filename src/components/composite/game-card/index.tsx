@@ -31,7 +31,7 @@ export function GameCard({
   const navigate = useNavigate();
 
   const handlePlayClick = (): void => {
-    void navigate(`/game-step/first/${id}`);
+    void navigate(`/lottery/${id}`);
   };
   return (
     <div className={styles.card}>

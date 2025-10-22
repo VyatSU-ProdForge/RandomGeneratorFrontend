@@ -10,8 +10,7 @@
   align-items: center;
   padding: 24px 48px;
   background-color: hsl(46deg 100% 50%);
-  isolation: isolate;
-  transform: translateZ(0);
+  z-index: 1000;
 
   &.transparent {
     background-color: transparent;
@@ -27,47 +26,10 @@
   background-color: hsl(0deg 0% 100%);
   border-radius: 16px;
   box-shadow: 0 4px 12px hsl(0deg 0% 0% / 10%);
-  margin-bottom: 20px;
 }
 
 .logo {
   width: auto;
   height: 32px;
-}
-
-.headerInfo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.date {
-  font-size: 16px;
-  font-weight: 500;
-  color: hsl(0deg 0% 40%);
-}
-
-.authButton {
-  padding: 10px 24px;
-  background-color: hsl(46deg 100% 50%);
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  color: hsl(0deg 0% 0%);
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 8px hsl(46deg 100% 50% / 30%);
-
-  &:hover {
-    background-color: hsl(46deg 100% 45%);
-    box-shadow: 0 4px 12px hsl(46deg 100% 50% / 40%);
-  }
-
-  &:active {
-    transform: translateY(1px);
-    box-shadow: 0 1px 4px hsl(46deg 100% 50% / 20%);
-  }
 }
 
