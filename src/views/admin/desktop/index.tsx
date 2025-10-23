@@ -81,14 +81,6 @@ export function AdminDesktop(): React.ReactElement {
 
   return (
     <div className={styles.container}>
-      {/* Дата и кнопка выхода */}
-      <div className={styles.topBar}>
-        <span className={styles.date}>{currentDate}</span>
-        <button className={styles.authButton} onClick={handleLogout}>
-          Выход
-        </button>
-      </div>
-
       <div className={styles.content}>
         <h1 className={styles.title}>Игровая комната</h1>
         
