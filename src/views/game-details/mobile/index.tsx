@@ -17,13 +17,13 @@ export function GameDetailsMobile(): React.ReactElement {
 
   const formatDateForDisplay = (isoDate: string): string => {
     const date = new Date(isoDate);
-    // Используем UTC методы, чтобы показывать время в том же часовом поясе, что и было введено
-    const day = String(date.getUTCDate()).padStart(2, '0');
-    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-    const year = String(date.getUTCFullYear()).slice(-2);
-    const hours = String(date.getUTCHours()).padStart(2, '0');
-    const minutes = String(date.getUTCMinutes()).padStart(2, '0');
-    const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+    // Используем локальные методы, чтобы показывать время в часовом поясе пользователя
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = String(date.getFullYear()).slice(-2);
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
     return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
   };
 
@@ -52,7 +52,27 @@ export function GameDetailsMobile(): React.ReactElement {
     void navigate(RoutePath.Admin);
   };
 
-  const isGameStarted = lottery ? new Date() >= new Date(lottery.startAt) : false;
+  const getButtonText = (): string => {
+    if (!lottery) return 'Дождитесь начала';
+    
+    switch (lottery.status) {
+      case 'draft':
+        return 'Дождитесь начала';
+      case 'inProgress':
+        return 'Дождитесь конца регистрации';
+      case 'finished':
+        return 'Начать игру';
+      default:
+        return 'Недоступно';
+    }
+  };
+
+  const isGameReady = lottery?.status === 'finished';
+
+  const handleStartGame = (): void => {
+    if (!isGameReady || !id) return;
+    void navigate(`/admin/game-result/${id}`);
+  };
 
   if (isLoading) {
     return (
@@ -105,12 +125,6 @@ export function GameDetailsMobile(): React.ReactElement {
           </div>
         </div>
 
-        {/* Количество участников */}
-        <div className={styles.field}>
-          <label className={styles.label}>Количество участников</label>
-          <div className={styles.value}>2500</div>
-        </div>
-
         {/* Количество бочек */}
         <div className={styles.field}>
           <label className={styles.label}>Количество бочек</label>
@@ -148,9 +162,10 @@ export function GameDetailsMobile(): React.ReactElement {
         <AppButton 
           variant="primary" 
           fullWidth 
-          disabled={!isGameStarted}
+          disabled={!isGameReady}
+          onClick={handleStartGame}
         >
-          {isGameStarted ? 'Начать игру' : 'Дождитесь начала'}
+          {getButtonText()}
         </AppButton>
       </div>
     </div>

@@ -9,10 +9,11 @@ export const RoutePath = {
   Login: '/login',
   LotterySelect: '/lottery/:id',
   GameStepFirst: '/game-step/first/:id',
-  GameStepSecond: '/game-step/second/:id',
+  UserResult: '/user-result/:id',
   Admin: '/admin',
   CreateGame: '/admin/create-game',
   GameDetails: '/admin/game/:id',
+  GameResult: '/admin/game-result/:id',
 } as const;
 
 export type RoutePathType = typeof RoutePath[keyof typeof RoutePath];

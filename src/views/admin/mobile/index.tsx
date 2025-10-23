@@ -57,9 +57,17 @@ export function AdminMobile(): React.ReactElement {
       const response = await lotteryService.getLotteries({
         page: 1,
         limit: 100,
-        status: activeTab === 'new' ? 'draft' : 'completed',
+        // Для "Новые" не фильтруем по статусу (показываем все кроме finished)
+        // Для "История" показываем только finished
+        ...(activeTab === 'history' && { status: 'finished' }),
       });
-      setLotteries(response.data);
+      
+      // Фильтруем на фронте для таба "Новые" (исключаем finished)
+      const filteredData = activeTab === 'new' 
+        ? response.data.filter(lottery => lottery.status !== 'finished')
+        : response.data;
+      
+      setLotteries(filteredData);
     } catch (error) {
       console.error('Failed to load lotteries:', error);
     } finally {
@@ -147,15 +155,35 @@ export function AdminMobile(): React.ReactElement {
                   <p className={styles.timer}>{formatTimeLeft(lottery.endAt)}</p>
 
                   {/* Кнопка */}
-                  <AppButton 
-                    variant="primary" 
-                    fullWidth 
-                    onClick={(): void => {
-                      void navigate(`/admin/game/${lottery.id}`);
-                    }}
-                  >
-                    Перейти к игре
-                  </AppButton>
+                  {lottery.status === 'finished' ? (
+                    <AppButton 
+                      variant="primary" 
+                      fullWidth 
+                      onClick={(): void => {
+                        void navigate(`/admin/game-result/${lottery.id}`);
+                      }}
+                    >
+                      Начать игру
+                    </AppButton>
+                  ) : (lottery.status === 'draft' || lottery.status === 'inProgress') ? (
+                    <AppButton 
+                      variant="primary" 
+                      fullWidth 
+                      onClick={(): void => {
+                        void navigate(`/admin/game/${lottery.id}`);
+                      }}
+                    >
+                      Перейти к игре
+                    </AppButton>
+                  ) : (
+                    <AppButton 
+                      variant="primary" 
+                      fullWidth 
+                      disabled
+                    >
+                      Игра завершена
+                    </AppButton>
+                  )}
                 </div>
               </div>
             ))

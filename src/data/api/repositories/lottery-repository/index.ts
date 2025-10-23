@@ -1,10 +1,16 @@
 import type { IHttpClient } from '@core/interfaces/http-client';
 import { API_CONFIG } from '@core/config';
+import axios from 'axios';
 import type {
   Lottery,
   LotteryListResponse,
   GetLotteriesRequest,
   UpdateLotteryRequest,
+  RegisterInLotteryRequest,
+  RegisterInLotteryResponse,
+  CalculateLotteryWinnersRequest,
+  CalculateLotteryWinnersResponse,
+  UserLotteryResults,
 } from './interfaces';
 
 export * from './interfaces';
@@ -78,6 +84,60 @@ export class LotteryRepository {
       { timeout: API_CONFIG.TIMEOUTS.DEFAULT }
     );
 
+    return response.data;
+  }
+
+  async registerInLottery(data: RegisterInLotteryRequest): Promise<RegisterInLotteryResponse> {
+    const formData = new FormData();
+    
+    formData.append('file', data.file);
+    formData.append('lotteryId', data.lotteryId.toString());
+    
+    // Отправляем массив как JSON-строку
+    formData.append('barrelsNumber', JSON.stringify(data.barrelsNumber));
+
+    // Используем нативный axios напрямую для правильной работы с FormData
+    const token = localStorage.getItem('auth_token'); // Правильный ключ токена
+    const baseURL = 'http://91.186.196.211:3001';
+    
+    try {
+      const response = await axios.post(
+        `${baseURL}${this._route}/register`,
+        formData,
+        {
+          headers: {
+            ...(token ? { 'Authorization': `JWT ${token}` } : {}),
+            // НЕ устанавливаем Content-Type - axios сделает это автоматически
+          },
+          timeout: API_CONFIG.TIMEOUTS.DEFAULT
+        }
+      );
+
+      return response.data;
+    } catch (error: any) {
+      console.error('Ошибка регистрации:', error.response?.data || error.message);
+      throw error;
+    }
+  }
+
+  async calculateLotteryWinners(data: CalculateLotteryWinnersRequest): Promise<CalculateLotteryWinnersResponse> {
+    const response = await this.httpClient.post<CalculateLotteryWinnersResponse>(
+      `${this._route}/calculateLotteryWinners`,
+      data,
+      { timeout: API_CONFIG.TIMEOUTS.DEFAULT }
+    );
+
+    return response;
+  }
+
+  async getUserLotteryResults(lotteryId: number): Promise<UserLotteryResults> {
+    const endpoint = `/${lotteryId}/getUserLotteryResults`;
+    
+    const response = await this.httpClient.get<{ data: UserLotteryResults; statusCode: number }>(
+      `${this._route}${endpoint}`,
+      { timeout: API_CONFIG.TIMEOUTS.DEFAULT }
+    );
+    
     return response.data;
   }
 }

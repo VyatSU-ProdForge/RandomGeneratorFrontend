@@ -6,10 +6,11 @@ import { GameRoom } from '@views/game-room';
 import { MyGames } from '@views/my-games';
 import { LotterySelect } from '@views/lottery-select';
 import { GameStepFirst } from '@views/game-step/game-step-first';
-import { GameStepSecond } from '@views/game-step/game-step-second';
+import { UserResult } from '@views/user-result';
 import { Admin } from '@views/admin';
 import { CreateGame } from '@views/create-game';
 import { GameDetails } from '@views/game-details';
+import { GameResult } from '@views/game-result';
 import { MainLayout } from '@app/layout/main-layout';
 
 export const routes: RouteObject[] = [
@@ -37,6 +38,10 @@ export const routes: RouteObject[] = [
         element: <GameDetails />,
       },
       {
+        path: RoutePath.GameResult,
+        element: <GameResult />,
+      },
+      {
         path: RoutePath.MyGames,
         element: <MyGames />,
       },
@@ -51,8 +56,8 @@ export const routes: RouteObject[] = [
     element: <GameStepFirst />,
   },
   {
-    path: RoutePath.GameStepSecond,
-    element: <GameStepSecond />,
+    path: RoutePath.UserResult,
+    element: <UserResult />,
   },
   {
     path: RoutePath.Register,

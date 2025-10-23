@@ -34,6 +34,11 @@
   background: linear-gradient(to bottom, transparent, hsl(46deg 100% 50%));
 }
 
+.headerWrapper {
+  position: relative;
+  width: 100%;
+}
+
 .content {
   position: relative;
   display: flex;

@@ -142,24 +142,26 @@ export function CreateGameMobile(): React.ReactElement {
     // Преобразуем год в полный формат (24 -> 2024)
     const fullYear = year.length === 2 ? `20${year}` : year;
     
-    // Добавляем padding к дню и месяцу, если нужно
-    const paddedDay = day.padStart(2, '0');
-    const paddedMonth = month.padStart(2, '0');
-    
-    // Разбираем время и добавляем padding
+    // Разбираем время
     const [hours, minutes, seconds] = timePart.split(':');
     if (!hours || !minutes || !seconds) {
       console.error('Invalid time parts:', { hours, minutes, seconds });
       return '';
     }
     
-    const paddedHours = hours.padStart(2, '0');
-    const paddedMinutes = minutes.padStart(2, '0');
-    const paddedSeconds = seconds.padStart(2, '0');
+    // Создаем объект Date из локального времени
+    const localDate = new Date(
+      parseInt(fullYear),
+      parseInt(month) - 1, // месяцы в JS с 0
+      parseInt(day),
+      parseInt(hours),
+      parseInt(minutes),
+      parseInt(seconds)
+    );
     
-    // Отправляем без Z, чтобы сервер интерпретировал как локальное время
-    const isoDate = `${fullYear}-${paddedMonth}-${paddedDay}T${paddedHours}:${paddedMinutes}:${paddedSeconds}.000Z`;
-    console.log('Converted date:', dateString, '→', isoDate);
+    // Преобразуем в ISO строку (автоматически конвертирует в UTC)
+    const isoDate = localDate.toISOString();
+    console.log('Converted date:', dateString, '→', isoDate, `(local → UTC, offset: ${-localDate.getTimezoneOffset() / 60}h)`);
     
     return isoDate;
   };

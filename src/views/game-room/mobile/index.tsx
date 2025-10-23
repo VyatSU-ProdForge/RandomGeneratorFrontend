@@ -35,10 +35,10 @@ export function GameRoomMobile(): React.ReactElement {
 
     if (diff <= 0) return 'Завершено';
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-    return `Осталось ${days}ч : ${hours}мин`;
+    return `Осталось ${hours}ч : ${minutes}мин`;
   };
 
   const formatAmount = (amount: number): string => {
@@ -51,9 +51,31 @@ export function GameRoomMobile(): React.ReactElement {
       const response = await lotteryService.getLotteries({
         page: 1,
         limit: 100,
-        status: activeTab === 'new' ? 'draft' : 'completed',
+        // Для "Новые" не фильтруем по статусу (показываем все кроме finished)
+        // Для "История" показываем только finished
+        ...(activeTab === 'history' && { status: 'finished' }),
       });
-      setLotteries(response.data);
+      
+      // Фильтруем на фронте для таба "Новые" (исключаем finished)
+      const filteredData = activeTab === 'new' 
+        ? response.data.filter(lottery => lottery.status !== 'finished')
+        : response.data;
+      
+      // Проверяем регистрацию пользователя для каждой лотереи
+      const lotteriesWithRegistration = await Promise.all(
+        filteredData.map(async (lottery) => {
+          try {
+            await lotteryService.getUserLotteryResults(lottery.id);
+            console.log(`Lottery ${lottery.id}: user IS registered`);
+            return { ...lottery, isUserRegistered: true };
+          } catch (error: any) {
+            console.log(`Lottery ${lottery.id}: user NOT registered`, error.response?.status);
+            return { ...lottery, isUserRegistered: false };
+          }
+        })
+      );
+      
+      setLotteries(lotteriesWithRegistration as any);
     } catch (error) {
       console.error('Failed to load lotteries:', error);
     } finally {
@@ -65,17 +87,20 @@ export function GameRoomMobile(): React.ReactElement {
     void loadLotteries();
   }, [loadLotteries]);
 
-  const gameCards = lotteries.map((lottery) => ({
+  const gameCards = lotteries.map((lottery: any) => ({
     id: String(lottery.id),
     name: lottery.name,
     drawNumber: '', // У нас пока нет номера тиража
     jackpot: formatAmount(lottery.amount),
     description: lottery.description,
     timeLeft: formatTimeLeft(lottery.endAt),
-    price: activeTab === 'new' ? 'Играть | 250 руб.' : '',
+    price: activeTab === 'new' ? 'Играть' : '',
     imageUrl: lottery.image.url,
     iconUrl: gameIcon,
     isHistory: activeTab === 'history',
+    status: lottery.status,
+    isUserRegistered: lottery.isUserRegistered || false,
+    isCalculated: lottery.status !== 'draft' && lottery.status !== 'inProgress',
   }));
 
   return (
@@ -92,14 +117,6 @@ export function GameRoomMobile(): React.ReactElement {
       <div className={styles.content}>
         {/* Заголовок */}
         <h1 className={styles.title}>Игровая комната</h1>
-
-        {/* Кнопка "Мои игры" */}
-        <button className={styles.myGamesButton} onClick={(): void => { void navigate(RoutePath.MyGames); }}>
-          <span>Мои игры</span>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
 
         {/* Табы */}
         <div className={styles.tabs}>
