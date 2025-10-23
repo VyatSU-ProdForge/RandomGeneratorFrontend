@@ -9,6 +9,7 @@ import { GameStepSecond } from '@views/game-step/game-step-second';
 import { Admin } from '@views/admin';
 import { LotteryAlgorithm } from '@views/lottery-algorithm';
 import { MainLayout } from '@app/layout/main-layout';
+import { Audit } from '@/views/audit';
 
 export const routes: RouteObject[] = [
   {
@@ -36,8 +37,12 @@ export const routes: RouteObject[] = [
         element: <MyGames />,
       },
       {
-        path: RoutePath.AlgorithmPage,
+        path: RoutePath.Algorithm,
         element: <LotteryAlgorithm />,
+      },
+      {
+        path: RoutePath.Audit,
+        element: <Audit/>,
       },
     ],
   },

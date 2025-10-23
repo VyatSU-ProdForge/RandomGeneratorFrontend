@@ -6,14 +6,12 @@ import { AppMenuModal } from '@/features/app-menu';
 interface IHeaderDesktopProps {
   showDate?: boolean;
   showMenuButton?: boolean;
-  onMenuClick?: () => void;
   transparent?: boolean;
 }
 
 export function HeaderDesktop({
   showDate = true,
   showMenuButton = true,
-  onMenuClick,
   transparent = false,
 }: IHeaderDesktopProps): React.ReactElement {
   const [isModalOpen, setIsModalOpen] = useState(false);

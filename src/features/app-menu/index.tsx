@@ -15,7 +15,7 @@ export function AppMenuModal({isModalOpen, onClose}: {isModalOpen: boolean, onCl
       icon: '🔍',
       onClick: () => {
         onClose();
-        console.log('Проверка честности');
+        navigate(RoutePath.Audit);
       }
     },
     {
@@ -23,8 +23,7 @@ export function AppMenuModal({isModalOpen, onClose}: {isModalOpen: boolean, onCl
       icon: '❓',
       onClick: () => {
         onClose();
-        console.log('Описание работы алгоритма');
-        navigate(RoutePath.AlgorithmPage);
+        navigate(RoutePath.Algorithm);
       }
     },
     {

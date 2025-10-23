@@ -8,6 +8,8 @@ import { AuthService } from '@/services/auth';
 import { useStorages } from './use-storages';
 import { ApiAlgorithmRepository } from '@/data/api/repositories/algorithm-repository';
 import { AlgorithmService } from '../algorithm';
+import { AuditService } from '../audit';
+import { ApiAuditRepository } from '@/data/api/repositories/audit-repository';
 
 export function useServices() {
 	const { authStorage } = useStorages();
@@ -16,11 +18,13 @@ export function useServices() {
 
 	const authRepository = useMemo(() => new ApiAuthRepository(httpClient), [httpClient]);
 	const algorithmRepository = useMemo(() => new ApiAlgorithmRepository(httpClient), [httpClient]);
+	const auditRepository = useMemo(() => new ApiAuditRepository(httpClient), [httpClient]);
 	
 	const authService = useMemo(() => new AuthService(authRepository, authStorage), [authRepository, authStorage]);
 	const algorithmService = useMemo(() => new AlgorithmService(algorithmRepository), [algorithmRepository]);
+	const auditService = useMemo(() => new AuditService(auditRepository), [auditRepository]);
 
-	return { authService, algorithmService };
+	return { authService, algorithmService, auditService};
 }
 
 

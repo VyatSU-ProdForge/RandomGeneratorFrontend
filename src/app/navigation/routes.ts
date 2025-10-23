@@ -10,7 +10,8 @@ export const RoutePath = {
   GameStepFirst: '/game-step/first/:id',
   GameStepSecond: '/game-step/second/:id',
   Admin: '/admin',
-  AlgorithmPage: '/algorithm'
+  Algorithm: '/algorithm',
+  Audit: '/audit'
 } as const;
 
 export type RoutePathType = typeof RoutePath[keyof typeof RoutePath];

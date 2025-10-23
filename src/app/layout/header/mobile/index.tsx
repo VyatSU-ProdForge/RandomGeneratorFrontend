@@ -6,7 +6,6 @@ import { AppMenuModal } from '@/features/app-menu';
 interface IHeaderMobileProps {
   showDate?: boolean;
   showMenuButton?: boolean;
-  onMenuClick?: () => void;
   transparent?: boolean;
 }
 

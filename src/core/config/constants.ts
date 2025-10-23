@@ -3,30 +3,51 @@
 
 import { ENV } from './env';
 
-// API Configuration
+/**
+ * Конфигурация API.
+ * Используется для настройки сетевых запросов и поведения клиента.
+ */
 export const API_CONFIG = {
+	/** Базовый URL API, берётся из переменных окружения */
 	BASE_URL: ENV.API_URL,
+	/** Таймауты для запросов (в миллисекундах) */
 	TIMEOUTS: {
+		/** Таймаут по умолчанию */
 		DEFAULT: 5000
 	},
+	/** Количество попыток повторного запроса при ошибке */
 	RETRY_ATTEMPTS: 3,
+	/** Content-Type по умолчанию для запросов */
 	DEFAULT_CONTENT_TYPE: "application/json"
 } as const;
 
-// Breakpoints (синхронизированы с SCSS)
+/**
+ * Точки перелома для адаптивной вёрстки.
+ * Синхронизированы с SCSS‑переменными.
+ */
 export const BREAKPOINTS = {
+	/** Минимальная ширина для мобильных устройств */
 	MOBILE: 320,
+	/** Минимальная ширина для планшетов */
 	TABLET: 768,
+	/** Минимальная ширина для десктопов */
 	DESKTOP: 1280,
+	/** Минимальная ширина для широких экранов */
 	WIDE: 1920,
 } as const;
 
-// Local Storage Keys
+/**
+ * Ключи для работы с LocalStorage.
+ * Используются для хранения пользовательских данных и настроек.
+ */
 export const STORAGE_KEYS = {
+	/** Токен авторизации */
 	AUTH_TOKEN: 'auth_token',
+	/** Пользовательские предпочтения (например, язык, настройки интерфейса) */
 	USER_PREFERENCES: 'user_preferences',
+	/** Тема оформления (light/dark/system) */
 	THEME: 'theme',
 } as const;
 
-// Routes будут в src/app/navigation/routes.ts
+// Routes приложения определены в `src/app/navigation/routes.ts`.
 
