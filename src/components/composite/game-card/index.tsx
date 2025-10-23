@@ -14,6 +14,9 @@ interface IGameCardProps {
   imageUrl: string;
   iconUrl?: string;
   isHistory?: boolean;
+  status?: 'draft' | 'inProgress' | 'finished';
+  isUserRegistered?: boolean;
+  isCalculated?: boolean;
 }
 
 export function GameCard({
@@ -27,12 +30,36 @@ export function GameCard({
   imageUrl,
   iconUrl,
   isHistory = false,
+  status = 'draft',
+  isUserRegistered = false,
+  isCalculated = false,
 }: IGameCardProps): React.ReactElement {
   const navigate = useNavigate();
 
   const handlePlayClick = (): void => {
-    void navigate(`/game-step/first/${id}`);
+    // Если пользователь зарегистрирован и игра рассчитана - переходим к результатам
+    if (isUserRegistered && isCalculated) {
+      void navigate(`/user-result/${id}`);
+    } else {
+      // Иначе переходим к выбору бочек
+      void navigate(`/lottery/${id}`);
+    }
   };
+  
+  const getButtonText = (): string => {
+    if (isUserRegistered) {
+      if (isCalculated) {
+        return 'Посмотреть результаты';
+      }
+      return 'Дождитесь окончания лотереи';
+    }
+    return price;
+  };
+  
+  // Кнопка активна если статус 'inProgress' и пользователь НЕ зарегистрирован
+  // ИЛИ если пользователь зарегистрирован и игра рассчитана
+  const isPlayable = (status === 'inProgress' && !isUserRegistered) || (isUserRegistered && isCalculated);
+  
   return (
     <div className={styles.card}>
       {/* Картинка сверху */}
@@ -71,8 +98,13 @@ export function GameCard({
             Недоступно
           </div>
         ) : (
-          <AppButton variant="primary" fullWidth onClick={handlePlayClick}>
-            {price}
+          <AppButton 
+            variant="primary" 
+            fullWidth 
+            onClick={handlePlayClick}
+            disabled={!isPlayable}
+          >
+            {getButtonText()}
           </AppButton>
         )}
       </div>

@@ -1,0 +1,225 @@
+@import "@/app/assets/styles/bundle.scss";
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: hsl(46deg 100% 50%);
+  overflow-x: hidden;
+}
+
+.backgroundWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.backgroundImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.backgroundGradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to bottom, transparent, hsl(46deg 100% 50%));
+}
+
+.headerWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 48px 48px;
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.backButton {
+  align-self: flex-start;
+  padding: 12px 20px;
+  background-color: hsl(0deg 0% 100%);
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: hsl(0deg 0% 0%);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  &:hover {
+    background-color: hsl(0deg 0% 95%);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.card {
+  background-color: hsl(0deg 0% 100%);
+  border-radius: 24px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: hsl(0deg 0% 0%);
+  text-align: center;
+}
+
+.gameInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gameHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.gameIcon {
+  width: 56px;
+  height: 56px;
+}
+
+.gameName {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: hsl(0deg 0% 0%);
+}
+
+.timer {
+  padding: 8px 16px;
+  background-color: hsl(46deg 100% 50%);
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: hsl(0deg 0% 0%);
+}
+
+.prize {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prizeLabel {
+  font-size: 16px;
+  font-weight: 500;
+  color: hsl(0deg 0% 40%);
+}
+
+.prizeAmount {
+  font-size: 28px;
+  font-weight: 700;
+  color: hsl(0deg 0% 0%);
+}
+
+.description {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  color: hsl(0deg 0% 30%);
+  line-height: 1.5;
+}
+
+.ticketSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 12px;
+  border-top: 1px solid hsl(0deg 0% 90%);
+}
+
+.ticketTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: hsl(0deg 0% 0%);
+}
+
+.ticketHint {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: hsl(0deg 0% 50%);
+}
+
+.numbersGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.numberButton {
+  aspect-ratio: 1;
+  padding: 14px;
+  background-color: hsl(0deg 0% 90%);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: hsl(0deg 0% 30%);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: hsl(0deg 0% 85%);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.selected {
+    background-color: hsl(46deg 100% 50%);
+    border-color: hsl(46deg 100% 40%);
+    color: hsl(0deg 0% 0%);
+    box-shadow: 0 2px 8px hsl(46deg 100% 50% / 40%);
+  }
+}
+
+.payment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+}
+
+.paymentLabel {
+  font-size: 16px;
+  font-weight: 500;
+  color: hsl(0deg 0% 40%);
+}
+
+.paymentAmount {
+  font-size: 20px;
+  font-weight: 700;
+  color: hsl(0deg 0% 0%);
+}
+

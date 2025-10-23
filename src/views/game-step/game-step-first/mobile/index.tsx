@@ -1,16 +1,20 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { AppButton } from '@components/simple/app-button';
-import { StepIndicator } from '@components/simple/step-indicator';
 import { Header } from '@app/layout/header';
+import { useServicesContext } from '@/providers/use-services-context';
+import { RoutePath } from '@app/navigation/routes';
 import gameCardBg from '@app/assets/images/game-card-bg.png';
 import cursorSvg from '@app/assets/images/cursor.svg';
 import styles from './styles/game-step-first-mobile.module.scss';
 
 export function GameStepFirstMobile(): React.ReactElement {
   const navigate = useNavigate();
+  const location = useLocation();
   const { id } = useParams<{ id: string }>();
+  const { lotteryService } = useServicesContext();
   const [hasDrawing, setHasDrawing] = React.useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const drawingCanvasRef = React.useRef<HTMLCanvasElement>(null);
   const cursorCanvasRef = React.useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = React.useState<boolean>(false);
@@ -157,7 +161,6 @@ export function GameStepFirstMobile(): React.ReactElement {
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>): void => {
-    e.preventDefault();
     if (!drawingCanvasRef.current) return;
 
     const canvas = drawingCanvasRef.current;
@@ -171,14 +174,12 @@ export function GameStepFirstMobile(): React.ReactElement {
     handleCanvasInteraction();
   };
 
-  const handleTouchEnd = (e: React.TouchEvent<HTMLCanvasElement>): void => {
-    e.preventDefault();
+  const handleTouchEnd = (): void => {
     setIsDrawing(false);
     lastPointRef.current = null;
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLCanvasElement>): void => {
-    e.preventDefault();
     if (!drawingCanvasRef.current) return;
 
     const canvas = drawingCanvasRef.current;
@@ -219,9 +220,51 @@ export function GameStepFirstMobile(): React.ReactElement {
     setHasDrawing(false);
   };
 
-  const handleNextStep = (): void => {
-    if (hasDrawing && id) {
-      void navigate(`/game-step/second/${id}`);
+  const handleRegister = async (): Promise<void> => {
+    if (!hasDrawing || !id || isSubmitting) return;
+
+    const drawingCanvas = drawingCanvasRef.current;
+    if (!drawingCanvas) return;
+
+    // Получаем выбранные бочки из navigation state
+    const state = location.state as { selectedNumbers: number[]; lotteryId: number } | null;
+    if (!state || !state.selectedNumbers || state.selectedNumbers.length === 0) {
+      alert('Выбранные бочки не найдены');
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+
+      // Конвертируем canvas в blob (JPG формат)
+      const blob = await new Promise<Blob>((resolve, reject) => {
+        drawingCanvas.toBlob((blob) => {
+          if (blob) {
+            resolve(blob);
+          } else {
+            reject(new Error('Не удалось создать изображение'));
+          }
+        }, 'image/jpeg', 0.95);
+      });
+
+      // Создаем файл из blob
+      const file = new File([blob], 'drawing.jpg', { type: 'image/jpeg' });
+
+      // Отправляем запрос на регистрацию
+      await lotteryService.registerInLottery({
+        lotteryId: Number(id),
+        barrelsNumber: state.selectedNumbers,
+        file,
+      });
+
+      // Успешная регистрация - переходим на главную
+      alert('Вы успешно зарегистрированы в лотерее!');
+      void navigate(RoutePath.GameRoom);
+    } catch (error) {
+      console.error('Ошибка регистрации:', error);
+      alert('Ошибка при регистрации в лотерее');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -244,11 +287,6 @@ export function GameStepFirstMobile(): React.ReactElement {
         <div className={styles.card}>
           <div className={styles.cardContent}>
             <h1 className={styles.title}>Генерация случайного числа</h1>
-            <p className={styles.subtitle}>
-              Пройди 2 шага, чтобы получить истинную случайность для участия в розыгрыше.
-            </p>
-
-            <StepIndicator currentStep={1} totalSteps={2} />
 
             <p className={styles.instruction}>
               Легким движением нарисуйте ваше уникальное изображение, которое приблизит вас к выигрышу
@@ -281,20 +319,13 @@ export function GameStepFirstMobile(): React.ReactElement {
               )}
             </div>
 
-            <div className={styles.encryptedSection}>
-              <label className={styles.encryptedLabel}>Зашифрованное значение</label>
-              <div className={styles.encryptedValue}>
-                Здесь будет записана зашифрованная часть сгенерированного числа
-              </div>
-            </div>
-
             <AppButton
               variant="primary"
               fullWidth
-              disabled={!hasDrawing}
-              onClick={handleNextStep}
+              disabled={!hasDrawing || isSubmitting}
+              onClick={handleRegister}
             >
-              К следующему шагу
+              {isSubmitting ? 'Регистрация...' : 'Зарегистрироваться'}
             </AppButton>
           </div>
         </div>

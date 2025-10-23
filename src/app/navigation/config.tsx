@@ -4,9 +4,13 @@ import { Register } from '@views/register';
 import { Login } from '@views/login';
 import { GameRoom } from '@views/game-room';
 import { MyGames } from '@views/my-games';
+import { LotterySelect } from '@views/lottery-select';
 import { GameStepFirst } from '@views/game-step/game-step-first';
-import { GameStepSecond } from '@views/game-step/game-step-second';
+import { UserResult } from '@views/user-result';
 import { Admin } from '@views/admin';
+import { CreateGame } from '@views/create-game';
+import { GameDetails } from '@views/game-details';
+import { GameResult } from '@views/game-result';
 import { LotteryAlgorithm } from '@views/lottery-algorithm';
 import { MainLayout } from '@app/layout/main-layout';
 import { Audit } from '@/views/audit';
@@ -26,6 +30,18 @@ export const routes: RouteObject[] = [
       {
         path: RoutePath.Admin,
         element: <Admin />,
+      },
+      {
+        path: RoutePath.CreateGame,
+        element: <CreateGame />,
+      },
+      {
+        path: RoutePath.GameDetails,
+        element: <GameDetails />,
+      },
+      {
+        path: RoutePath.GameResult,
+        element: <GameResult />,
       },
     ],
   },
@@ -47,12 +63,20 @@ export const routes: RouteObject[] = [
     ],
   },
   {
+    path: RoutePath.LotterySelect,
+    element: <LotterySelect />,
+  },
+  {
+    path: RoutePath.LotterySelect,
+    element: <LotterySelect />,
+  },
+  {
     path: RoutePath.GameStepFirst,
     element: <GameStepFirst />,
   },
   {
-    path: RoutePath.GameStepSecond,
-    element: <GameStepSecond />,
+    path: RoutePath.UserResult,
+    element: <UserResult />,
   },
   {
     path: RoutePath.Register,

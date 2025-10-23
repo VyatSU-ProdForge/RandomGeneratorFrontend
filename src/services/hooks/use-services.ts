@@ -2,9 +2,10 @@ import { useMemo } from 'react';
 
 import { AxiosHttpClient } from '@/data/api/http/axios-http-client';
 import { ApiAuthRepository } from '@/data/api/repositories/auth-repository';
-import { API_CONFIG } from '@/core/config';
-
+import { LotteryRepository } from '@/data/api/repositories/lottery-repository';
+import { API_CONFIG } from '@/core/config'
 import { AuthService } from '@/services/auth';
+import { LotteryService } from '@/services/lottery/lottery.service';
 import { useStorages } from './use-storages';
 import { ApiAlgorithmRepository } from '@/data/api/repositories/algorithm-repository';
 import { AlgorithmService } from '../algorithm';
@@ -21,10 +22,13 @@ export function useServices() {
 	const auditRepository = useMemo(() => new ApiAuditRepository(httpClient), [httpClient]);
 	
 	const authService = useMemo(() => new AuthService(authRepository, authStorage), [authRepository, authStorage]);
-	const algorithmService = useMemo(() => new AlgorithmService(algorithmRepository), [algorithmRepository]);
+		const algorithmService = useMemo(() => new AlgorithmService(algorithmRepository), [algorithmRepository]);
 	const auditService = useMemo(() => new AuditService(auditRepository), [auditRepository]);
 
-	return { authService, algorithmService, auditService};
+	const lotteryRepository = useMemo(() => new LotteryRepository(httpClient), [httpClient]);
+	const lotteryService = useMemo(() => new LotteryService(lotteryRepository), [lotteryRepository]);
+
+	return { authService, lotteryService, algorithmService, auditService};
 }
 
 

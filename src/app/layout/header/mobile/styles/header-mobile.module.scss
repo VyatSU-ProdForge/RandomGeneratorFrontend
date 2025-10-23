@@ -10,7 +10,7 @@
   padding: 16px 24px 0;
   isolation: isolate;
   transform: translateZ(0);
-  z-index: 100;
+  z-index: 1000;
 
   &.transparent {
     background-color: transparent;
@@ -26,7 +26,6 @@
   background-color: hsl(0deg 0% 100%);
   border-radius: 16px;
   box-shadow: 0 2px 8px hsl(0deg 0% 0% / 8%);
-  margin-bottom: 16px;
 }
 
 .logo {

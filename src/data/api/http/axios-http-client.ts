@@ -74,8 +74,18 @@ export class AxiosHttpClient implements IHttpClient {
 			config.headers.set?.("Authorization", `JWT ${token}`);
 		}
 		
-		if (!config.headers.has('Content-Type')) {
-			config.headers.set?.("Content-Type", API_CONFIG.DEFAULT_CONTENT_TYPE);
+		// Для FormData НЕ устанавливаем Content-Type вообще
+		const isFormData = config.data instanceof FormData;
+		
+		if (isFormData) {
+			// Удаляем Content-Type если он был установлен, чтобы браузер установил правильный с boundary
+			delete (config.headers as any)['Content-Type'];
+			delete (config.headers as any)['content-type'];
+		} else {
+			// Для обычных запросов устанавливаем JSON
+			if (!config.headers.has('Content-Type')) {
+				config.headers.set?.("Content-Type", API_CONFIG.DEFAULT_CONTENT_TYPE);
+			}
 		}
 
 		return config;
@@ -97,6 +107,13 @@ export class AxiosHttpClient implements IHttpClient {
 		const details = error.response.data;
 		
 		console.error('🔴 Server error:', status, details);
+		console.error('🔴 Full response:', JSON.stringify(error.response, null, 2));
+		console.error('🔴 Request config:', {
+			url: error.config?.url,
+			method: error.config?.method,
+			headers: error.config?.headers,
+			data: error.config?.data
+		});
 
 		throw new ApiError(`Ошибка API: ${status}`, status, details);
 	}

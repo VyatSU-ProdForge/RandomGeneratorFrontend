@@ -7,9 +7,13 @@ export const RoutePath = {
   MyGames: '/my-games',
   Register: '/register',
   Login: '/login',
+  LotterySelect: '/lottery/:id',
   GameStepFirst: '/game-step/first/:id',
-  GameStepSecond: '/game-step/second/:id',
+  UserResult: '/user-result/:id',
   Admin: '/admin',
+  CreateGame: '/admin/create-game',
+  GameDetails: '/admin/game/:id',
+  GameResult: '/admin/game-result/:id',
   Algorithm: '/algorithm',
   Audit: '/audit'
 } as const;
