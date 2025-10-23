@@ -8,7 +8,6 @@ export class AlgorithmService {
 
 	async getAlgorithm(): Promise<AlgorithmData> {
 		const response = await this.algorithmRepository.getAlgorithm();
-		console.log(response);
 		
 		return response.data;
 	}

@@ -115,7 +115,6 @@ export const AuditDesktop: React.FC = () => {
     } catch (err: any) {
       // Обрабатываем ошибку
       setError(err.message || 'Произошла ошибка при проверке аудита');
-      console.error('Audit error:', err);
     } finally {
       setIsLoading(false);
     }

@@ -9,7 +9,7 @@ interface IEnvConfig {
 }
 
 function validateEnv(): IEnvConfig {
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://91.186.196.211:3001';
+  const apiUrl = import.meta.env.VITE_API_URL;
   const mode = import.meta.env.MODE || 'development';
   const isDev = import.meta.env.DEV;
   const isProd = import.meta.env.PROD;

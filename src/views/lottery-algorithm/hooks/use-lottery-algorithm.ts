@@ -16,10 +16,8 @@ export const useLotteryAlgorithm = () => {
       setError(null);
       
       const response = await algorithmService.getAlgorithm();
-      console.log(response);
       setAlgorithmData(response);
     } catch (err) {
-      console.error('Failed to fetch algorithm:', err);
       setError('Не удалось загрузить данные алгоритма');
     } finally {
       setIsLoading(false);

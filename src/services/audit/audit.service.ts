@@ -8,7 +8,6 @@ export class AuditService {
 
 	async getAuditService(auditRequest: AuditRequest): Promise<AuditResult> {
 		const response = await this.auditRepository.getAuditResult(auditRequest);
-		console.log(response);
 		
 		return response;
 	}

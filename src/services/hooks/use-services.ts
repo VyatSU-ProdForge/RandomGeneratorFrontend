@@ -14,7 +14,7 @@ import { ApiAuditRepository } from '@/data/api/repositories/audit-repository';
 export function useServices() {
 	const { authStorage } = useStorages();
 
-	const httpClient = useMemo(() => new AxiosHttpClient("http://91.186.196.211:3001", () => authStorage.getToken()), [authStorage]);
+	const httpClient = useMemo(() => new AxiosHttpClient(API_CONFIG.BASE_URL, () => authStorage.getToken()), [authStorage]);
 
 	const authRepository = useMemo(() => new ApiAuthRepository(httpClient), [httpClient]);
 	const algorithmRepository = useMemo(() => new ApiAlgorithmRepository(httpClient), [httpClient]);
